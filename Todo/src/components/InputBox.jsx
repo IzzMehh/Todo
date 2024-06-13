@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Task from './Task'
+import { TodoData } from '../contexts/TodoData'
 
-function InputBox({handleTask}) {
+function InputBox() {
+  const {addTask} = useContext(TodoData)
   const [useTodoTitle,setTodoTitle] = useState('')
   return (
     <div className='flex justify-center'>
@@ -15,7 +17,7 @@ function InputBox({handleTask}) {
             onClick={
               ()=>{
                 if(useTodoTitle !== ''){
-                  handleTask(useTodoTitle)
+                  addTask(useTodoTitle)
                   setTodoTitle('')
                 }
               }
