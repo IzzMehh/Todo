@@ -1,8 +1,14 @@
-import React from "react"
+import React, { useState } from "react"
 import InputBox from "./components/InputBox"
 import Task from "./components/Task"
 
 function App() {
+  const [task,setTask] = useState([])
+
+  const addTask = (input) =>{
+    console.log('lol')
+    setTask([...task, input])
+  }
 
   return (
     <>
@@ -16,13 +22,14 @@ function App() {
       <div className=" h-full">
         <h2 className="text-4xl font-text-font text-black font-semibold">Tasks</h2>
         <ul>
-        <Task/>
+          {task.map((title, index)=><Task key={index} text={title}/>)}
+          {/* here all todo's will come */}
         </ul>
 
       </div>
     </div>
     <div className="text-center self-center">
-    <InputBox/>
+    <InputBox handleTask = {addTask}/>
     </div>
     </div>
     </div>

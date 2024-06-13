@@ -1,9 +1,10 @@
 import React from 'react'
 
+// todo-completed
 
-function Task() {
+function Task({text}) {
   return (
-    <li className='bg-[#ffffff6d]  todo-completed p-4  rounded-xl flex items-center'>
+    <li className='bg-[#ffffff6d]  p-4  rounded-xl flex items-center'>
         <div className='w-[44px]'>
             <button 
             onClick={(e)=>{
@@ -13,7 +14,7 @@ function Task() {
             <svg className='style' width="12" height="12" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" ></path></svg>
             </button>
         </div>
-        <div className='w-[90%] text-xl  font-text-font font-semibold self-cente text-black '>Start Building a Todo App using React js</div>
+        <div className='w-[90%] text-xl  font-text-font font-semibold self-cente text-black '>{text}</div>
         <div className='right-full flex' >
             <div className='star-wrapper'>
                 <button 
