@@ -24,7 +24,7 @@ function App() {
         <div className="mb-5">
         <h2 className="text-4xl font-text-font text-black font-semibold mb-3">Important:</h2>
         <ul>
-          {task.map((title, index)=><Task key={index} completed={true} text={title}/>)}
+          {task.map((title, index)=><Task key={index} important={true} completed={true} text={title}/>)}
           {/* here all todo's will come */}
         </ul>
         </div>
@@ -32,7 +32,7 @@ function App() {
         <div>
         <h2 className="text-4xl font-text-font text-black font-semibold mb-3">Tasks:</h2>
         <ul>
-          {task.map((title, index)=><Task key={index} completed={false} text={title}/>)}
+          {task.map((title, index)=><Task key={index} important={false} completed={false} text={title}/>)}
           {/* here all todo's will come */}
         </ul>
         </div>
