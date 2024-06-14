@@ -11,23 +11,35 @@ function App() {
   return (
     <>
     <div className="max-w-[1000px] m-auto z-[1] ">
-    <div className="grid grid-rows-[20vh_65vh_15vh] h-full w-[100%] m-auto">
+    <div className="grid grid-rows-[15vh,70vh,15vh] h-full w-[100%] m-auto">
+
     <div className="flex justify-center items-center mt-7">
       <img src="../public/logo.svg" alt="" className=" w-[50px]  transition-all hover:scale-[1.2] hover:rotate-[180deg]" />
       <h1 className="text-black font-text-font font-semibold ml-3">Todo App</h1>
     </div>
+
+
     <div className="todo-container overflow-y-auto overflow-x-hidden">
-      <div className="w-[90%] m-auto">
-        <h2 className="text-4xl font-text-font text-black font-semibold">Tasks</h2>
+      <div className="w-[90%] m-auto ">
+        <div className="mb-5">
+        <h2 className="text-4xl font-text-font text-black font-semibold mb-3">Important:</h2>
         <ul>
-          {
-          task.map((title, index)=><Task key={index} text={title}/>)}
+          {task.map((title, index)=><Task key={index} completed={true} text={title}/>)}
           {/* here all todo's will come */}
         </ul>
-
+        </div>
+        
+        <div>
+        <h2 className="text-4xl font-text-font text-black font-semibold mb-3">Tasks:</h2>
+        <ul>
+          {task.map((title, index)=><Task key={index} completed={false} text={title}/>)}
+          {/* here all todo's will come */}
+        </ul>
+        </div>
       </div>
     </div>
-    <div className="text-center self-center w-[90%] m-auto">
+    
+    <div className="text-center  w-[90%] m-auto ">
       <InputBox />
     </div>
     </div>

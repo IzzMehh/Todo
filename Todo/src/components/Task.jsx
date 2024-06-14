@@ -2,15 +2,15 @@ import React from 'react'
 
 // todo-completed
 
-function Task({text}) {
+function Task({text,completed}) {
   return (
-    <li className='bg-[#ffffff6d]  p-4  rounded-xl flex items-center mb-2'>
+    <li className={`bg-[#ffffff6d] ${completed?'todo-completed':'incomplete'}  p-4  rounded-xl flex items-center mb-2`}>
         <div className='w-[44px]'>
             <button 
             onClick={(e)=>{
                 (e.target.classList.contains('complete')?e.target.classList.remove('complete'):e.target.classList.add('complete') )
             }}
-            className='w-[30px] h-[30px] complete outline-none rounded-full border-[#827EA3] border-2 flex justify-center items-center  '>
+            className={` ${completed?'complete':'not-complete'} w-[30px] h-[30px]  outline-none rounded-full border-[#827EA3] border-2 flex justify-center items-center`}>
             <svg className='style' width="12" height="12" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" ></path></svg>
             </button>
         </div>
