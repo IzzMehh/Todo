@@ -1,3 +1,6 @@
+  
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,6 +11,7 @@
   height: 100%;
   z-index: 2;
 }
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -106,3 +110,12 @@ h1 {
   text-decoration: line-through;
   color:#616895;
 }
+
+.todo-container{
+    overflow: auto;
+    scrollbar-width: none; /* For Firefox */
+}
+  
+  .todo-container::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Opera */
+  }

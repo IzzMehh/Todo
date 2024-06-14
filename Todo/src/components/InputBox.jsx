@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react'
-import Task from './Task'
 import { TodoData } from '../contexts/TodoData'
 
 function InputBox() {

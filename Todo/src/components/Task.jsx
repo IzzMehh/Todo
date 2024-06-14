@@ -4,7 +4,7 @@ import React from 'react'
 
 function Task({text}) {
   return (
-    <li className='bg-[#ffffff6d]  p-4  rounded-xl flex items-center'>
+    <li className='bg-[#ffffff6d]  p-4  rounded-xl flex items-center mb-2'>
         <div className='w-[44px]'>
             <button 
             onClick={(e)=>{
@@ -51,10 +51,10 @@ function Task({text}) {
                  }}
                 className= 'text-xl text-[#837a7f] outline-none hover:bg-[#0000000f] py-1 px-2 rounded-md'><ion-icon name="ellipsis-horizontal-outline"></ion-icon></button>
                 <div className='relative '>
-                <span className='bg-black py-4 text-center font-text-font font-semibold text-lg rounded-xl w-[200px] absolute left-[-70px] z-[-3]  opacity-0 transition-all'>More Options</span>
+                <span className='bg-black py-4 text-center font-text-font font-semibold text-lg rounded-xl w-[150px] absolute left-[-70px] z-[-3]  opacity-0 transition-all'>More Options</span>
                 </div>
                 <div className='relative'>
-                <div className='optionDiv w-[250px]  text-[#000000d8] font-semibold p-2 bg-[white] font-text-font text-lg  rounded-2xl  absolute right-0  opacity-0 z-[-3]'>
+                <div className='optionDiv w-[250px]  text-[#000000d8] font-semibold p-2 bg-[white] font-text-font text-lg  rounded-2xl  absolute right-0  opacity-0 z-[-3] transition-all'>
                     <button className='p-4 rounded-2xl hover:text-black  hover:bg-[#00000019] cursor-pointer  w-full text-left'><ion-icon name="pencil-outline"></ion-icon> Edit task</button>
                     <button className='p-4 rounded-2xl hover:text-black hover:bg-[#00000019] cursor-pointer w-full text-left'><ion-icon name="ellipse-outline"></ion-icon> Mark as uncompleted</button>
                     <button className='p-4 rounded-2xl hover:text-black hover:bg-[#00000019] cursor-pointer w-full text-left'><ion-icon name="star-outline"></ion-icon> Mark as important</button>
