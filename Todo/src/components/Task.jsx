@@ -1,26 +1,64 @@
-import React from 'react'
+import React, { useContext, useRef, useState } from 'react'
+import { TodoData } from '../contexts/TodoData';
 
 // todo-completed
 
-function Task({text,completed,important}) {
+
+function Task({text,completed,important,id,editing}) {
+    const {task,setTask} = useContext(TodoData)
+    
+
+    const editRef = useRef(null)
+    
+    const deleteTodo = (id)=>{
+    setTask(task.filter((val)=>val.key !== id))
+  }
+
+  const completeToggle = (id) =>{
+    setTask(prevTask => prevTask.map((val)=>val.key===id ? {...val,completed:!val.completed} : val))
+  }
+
+  const importantToggle = (id) =>{
+    setTask(prevTask => prevTask.map((val)=>val.key===id ? {...val,important:!val.important} : val ))
+  }
+
+  const editMode = (id) =>{
+    setTask(prevTask => prevTask.map((val)=>val.key===id ? {...val,editing:true} : val ))
+  }
+  
+  const editTask = (id,text) => {
+    setTask(prevTask => prevTask.map((val)=> val.key===id ? {...val, todoText:text,editing:false} : val))
+  }
+  
+
   return (
-    <li className={`bg-[#ffffff6d] ${completed?'todo-completed':'incomplete'}  p-4  rounded-xl flex items-center mb-2`}>
+    <li className={`bg-[#ffffff6d] ${completed?'todo-completed':'incomplete'}  ${editing?'border-2 border-black':''} p-4  rounded-xl flex items-center mb-2`}>
         <div className='w-[44px]'>
             <button 
             onClick={(e)=>{
                 (e.target.classList.contains('complete')?e.target.classList.remove('complete'):e.target.classList.add('complete') )
+                completeToggle(id)
             }}
             className={` ${completed?'complete':'not-complete'} w-[30px] h-[30px]  outline-none rounded-full border-[#827EA3] border-2 flex justify-center items-center`}>
             <svg className='style' width="12" height="12" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" ></path></svg>
             </button>
         </div>
-        <div className='w-[90%] text-xl  font-text-font font-semibold self-cente text-black '>{text}</div>
+        {editing===true ? (
+            
+            <div className='w-full'>
+                <input type='text' ref={editRef} defaultValue={text}  autoComplete='off' className='w-[95%] text-xl text-black outline-none font-text-font font-semibold self-cente bg-transparent'></input>
+                <button 
+                onClick={()=>editTask(id,(editRef.current.value))}
+                className='w-[5%] text-xl text-[#837a7f] outline-none hover:bg-[#0000000f] py-1 px-2 rounded-md'><ion-icon name="checkmark-outline"></ion-icon></button>
+            </div>
+        ):<div className='w-[90%] text-xl  font-text-font font-semibold self-cente text-black '>{text}</div>}
         <div className='right-full flex' >
             <div className='star-wrapper'>
                 <button 
+                onClick={()=>importantToggle(id)}
                 onMouseOver={(e)=>{
                     let labelDiv = e.target.closest('div').querySelector('span');
-                    
+
                    labelDiv.classList.add('label')
                 }}
                 onMouseLeave={(e)=>{
@@ -28,7 +66,7 @@ function Task({text,completed,important}) {
 
                         labelDiv.classList.remove('label')
                  }}
-                className={`text-xl text-[#837a7f] outline-none hover:bg-[#0000000f] py-1 px-2 rounded-md ${completed?'text-yellow-400':''}`}><ion-icon name={important?'star':'star-outline'}></ion-icon></button>
+                className={`text-xl text-[#837a7f] outline-none hover:bg-[#0000000f] py-1 px-2 rounded-md ${important?'text-yellow-400':''}`}><ion-icon name={important?'star':'star-outline'}></ion-icon></button>
                 <div className='relative '>
                     <span className='bg-black p-4 text-center font-text-font font-semibold text-lg rounded-xl w-[200px] absolute left-[-70px] z-[-3] opacity-0 transition-all'>{important?'Remove importance':'Mark as important'}</span>
                 </div>
@@ -36,7 +74,7 @@ function Task({text,completed,important}) {
 
             <div>
             <div className='option-wrapper'>
-                <button 
+                <button  
                 onMouseOver={(e)=>{
                     let labelDiv = e.target.closest('div').querySelector('span');
                    labelDiv.classList.add('label')
@@ -55,12 +93,25 @@ function Task({text,completed,important}) {
                 </div>
                 <div className='relative'>
                 <div className='optionDiv w-[250px]  text-[#000000d8] font-semibold p-2 bg-[white] font-text-font text-lg  rounded-2xl  absolute right-0  opacity-0 z-[-3] transition-all'>
-                    <button className='p-4 rounded-2xl hover:text-black  hover:bg-[#00000019] cursor-pointer  w-full text-left'><span className='relative top-[2px] right-1'><ion-icon name="pencil-outline"></ion-icon></span> Edit task</button>
-                    <button className='p-4 rounded-2xl hover:text-black hover:bg-[#00000019] cursor-pointer w-full text-left'><span className='relative top-[2px] right-1'><ion-icon name={completed?'ellipse-outline':'checkmark-circle-outline'}></ion-icon></span> {completed?'Mark as uncompleted':'Mark as completed'}</button>
-                    <button className='p-4 rounded-2xl hover:text-black hover:bg-[#00000019] cursor-pointer w-full text-left'><span className='relative top-[2px] right-1'><ion-icon name={important?'star':'star-outline'}></ion-icon></span> {important?'Remove importance':'Mark as important'}</button>
-                    <button className='p-4 rounded-2xl  hover:bg-[#ff52526b] text-red-600 cursor-pointer w-full text-left'><span className='relative top-[2px] right-1'><ion-icon name="trash-outline"></ion-icon></span> Delete task</button>
+                    <button 
+                    onClick={()=>{
+                        editMode(id)
+                    }
+                    
+                    }
+                    className='p-4 rounded-2xl hover:text-black  hover:bg-[#00000019] cursor-pointer  w-full text-left'><span className='relative top-[2px] right-1'><ion-icon name="pencil-outline"></ion-icon></span> Edit task </button>
+                    <button 
+                    onClick={()=>completeToggle(id)}
+                    className='p-4 rounded-2xl hover:text-black hover:bg-[#00000019] cursor-pointer w-full text-left'><span className='relative top-[2px] right-1'><ion-icon name={completed?'ellipse-outline':'checkmark-circle-outline'}></ion-icon></span> {completed?'Mark as uncompleted':'Mark as completed'}</button>
+                    <button
+                    onClick={()=>importantToggle(id)}
+                     className='p-4 rounded-2xl hover:text-black hover:bg-[#00000019] cursor-pointer w-full text-left'><span className='relative top-[2px] right-1'><ion-icon name={important?'star':'star-outline'}></ion-icon></span> {important?'Remove importance':'Mark as important'}</button>
+                    <button
+                    onClick={()=>deleteTodo(id)}
+                     className='p-4 rounded-2xl  hover:bg-[#ff52526b] text-red-600 cursor-pointer w-full text-left'><span className='relative top-[2px] right-1'><ion-icon name="trash-outline"></ion-icon></span> Delete task</button>
+
                 </div>
-                </div>
+            </div>
             </div>
             </div>
         </div>
