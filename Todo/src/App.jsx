@@ -7,8 +7,6 @@ import { TodoData } from "./contexts/TodoData"
 
 function App() {
   const {task} = useContext(TodoData)
-  console.log(task)
-
 
   return (
     <>
@@ -17,7 +15,7 @@ function App() {
 
     <div className="flex justify-center items-center mt-7">
       <img src="../public/logo.svg" alt="" className=" w-[50px]  transition-all hover:scale-[1.2] hover:rotate-[180deg]" />
-      <h1 className="text-black font-text-font font-semibold ml-3">Todo App</h1>
+      <h1 className="text-black font-text-font font-semibold ml-3 text-[40px] lg:text-[50px]">Todo App</h1>
     </div>
 
 
@@ -25,7 +23,7 @@ function App() {
       <div className="w-[90%] m-auto ">
         
         <div className="mb-5">
-        <h2 className={`text-4xl font-text-font text-black font-semibold mb-3 ${task.some(val => val.important) ? 'block' : 'hidden'}`}>Important:</h2>
+        <h2 className={`text-4xl max-lg:text-3xl font-text-font text-black font-semibold mb-3 ${task.some(val => val.important) ? 'block' : 'hidden'}`}>Important:</h2>
         <ul>
           {(task.filter((val)=>(val.important)).map((val, index)=><Task key={index} id={val.key} important={val.important} completed={val.completed} editing={val.editing}  text={val.todoText}/>))}
           {/* here all todo's will come */}
@@ -33,7 +31,7 @@ function App() {
         </div>
         
         <div>  
-        <h2 className="text-4xl font-text-font text-black font-semibold mb-3">Tasks:</h2>
+        <h2 className="text-4xl max-lg:text-3xl font-text-font text-black font-semibold mb-3">Tasks:</h2>
         <ul>
           {(task.filter((val)=>(!val.important)).map((val, index)=><Task key={index} id={val.key} important={val.important} completed={val.completed}  editing={val.editing} text={val.todoText}/>))}
           {/* here all todo's will come */}

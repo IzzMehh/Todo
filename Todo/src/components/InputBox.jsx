@@ -21,7 +21,7 @@ function InputBox() {
                 }
               }
             }
-            className='bg-[#1E212F] w-[15%] h-full rounded-r-[15px] text-xl font-text-font font-semibold cursor-pointer select-none'><span className='text-4xl relative top-3'><ion-icon name="add-outline"></ion-icon></span> Add </div>
+            className='bg-[#1E212F] w-[15%] h-full rounded-r-[15px] text-xl font-text-font font-semibold cursor-pointer select-none hover:bg-[#101118]'><span className='text-4xl relative top-3'><ion-icon name="add-outline"></ion-icon></span> <span className='hidden  sm:inline-block'>Add</span> </div>
         </div>
     </div>
   )
