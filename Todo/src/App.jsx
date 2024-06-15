@@ -14,7 +14,7 @@ function App() {
     <div className="grid grid-rows-[15vh,70vh,15vh] h-full w-[100%] m-auto">
 
     <div className="flex justify-center items-center mt-7">
-      <img src="../public/logo.svg" alt="" className=" w-[50px]  transition-all hover:scale-[1.2] hover:rotate-[180deg]" />
+      <img src="logo.svg" alt="" className=" w-[50px]  transition-all hover:scale-[1.2] hover:rotate-[180deg]" />
       <h1 className="text-black font-text-font font-semibold ml-3 text-[40px] lg:text-[50px]">Todo App</h1>
     </div>
 
