@@ -11,7 +11,7 @@ function App() {
   return (
     <>
     <div className="max-w-[1000px] m-auto z-[1] ">
-    <div className="grid grid-rows-[10vh,70vh,15vh] h-full w-[100%] m-auto">
+    <div className="grid grid-rows-[15vh,70vh,15vh] h-[100vh] w-[100%] m-auto">
 
     <div className="flex justify-center items-center mt-7">
       <img src="logo.svg" alt="" className=" w-[50px]  transition-all hover:scale-[1.2] hover:rotate-[180deg]" />
